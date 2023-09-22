@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="app.js"></script>
     <link rel="stylesheet" href="css.css">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" rel="stylesheet">
@@ -11,51 +13,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DogOs</title>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
+
 <body>
     <div class="sidebar left">
         <div class="logo">
             <img src="src/img/icon.png">
-          </div>
+        </div>
     </div>
     <div class="icons">
-        <a href="login.html"><img id="lockIcon"  src="src/img/lock.svg"></a>
+        <a href="login.html"><img id="lockIcon" src="src/img/lock.svg"></a>
         <img id="soundIcon" src="src/img/som.svg">
         <img id="soundIcon" src="src/img/wifi.svg">
     </div>
     <div class="input-range-container">
         <input type="range" id="inputRange">
     </div>
-  <div class="sidebar right">
-    <div class="right icons">
-        <img src="src/img/calendar.svg" id="calendarButton">
+    <div class="sidebar right">
+        <div class="right icons">
+            <img src="src/img/calendar.svg" id="calendarButton">
+        </div>
     </div>
-  </div>
 
-  <div class="lordicon">
-  <lord-icon
-    src="https://cdn.lordicon.com/gqdnbnwt.json"
-    trigger="hover"
-    colors="primary:#121331,secondary:#08a88a"
-    style="width:250px;height:100px;left:20px;top:20pxbox-shadow: color(black ); top:20px">
-</lord-icon>
-</div>
-
-  <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="calendarModalLabel">Calendário</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+    <div class="lordicon-task">
+        <lord-icon src="https://cdn.lordicon.com/gqdnbnwt.json" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo" trigger="hover" colors="primary:#121331,secondary:#08a88a"
+            style="width:250px;height:100px; cursor:pointer; left:20px;top:20px box-shadow:color(black ); top:20px">
+        </lord-icon>
+    </div>
+    <div class="lordicon-web">
+        <div class="modal-body">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                               <H1>INDICATIVO</H1><br>
+                               <h6>10</h6>
+                               
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <div id="calendar"></div>
+            <lord-icon src="https://cdn.lordicon.com/gqzfzudq.json" trigger="hover"
+                colors="primary:#08a88a,secondary:#121331" style="width:297px; cursor:pointer; height:100px;top: 20px;">
+            </lord-icon>
+        </div>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="calendarModalLabel">Calendário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="calendar"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
 </html>
