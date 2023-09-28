@@ -39,3 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Valor do input range:", event.target.value);
       });
     });
+
+        // Inicializa a contagem de números
+        let contador = 0;
+
+        // Obtém o botão de adicionar
+        const addButton = document.getElementById('addButton');
+
+        // Obtém o elemento de saída
+        const outputElement = document.getElementById('output');
+
+        // Adiciona um evento de clique ao botão
+        addButton.addEventListener('click', () => {
+            // Incrementa o contador
+            contador++;
+
+            // Adiciona o número ao elemento de saída
+            outputElement.textContent = `Números adicionados: ${contador}`;
+        });
