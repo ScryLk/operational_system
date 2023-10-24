@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escalonamento de Prioridade</title>
+  <style>
+    #prioridade {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background-color: #ddd;
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0;
+      background-color: #4CAF50;
+      position: absolute;
+    }
+
+    #btnVoltar {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .btn-voltar {
+ --color: #560bad;
+ font-family: inherit;
+ display: inline-block;
+ width: 8em;
+ height: 2.6em;
+ line-height: 2.5em;
+ margin: 20px;
+ position: relative;
+ overflow: hidden;
+ border: 2px solid var(--color);
+ transition: color .5s;
+ z-index: 1;
+ font-size: 17px;
+ border-radius: 6px;
+ font-weight: 500;
+ color: var(--color);
+ cursor: pointer;
+}
+
+.btn-voltar:before {
+ content: "";
+ position: absolute;
+ z-index: -1;
+ background: var(--color);
+ height: 150px;
+ width: 200px;
+ border-radius: 50%;
+}
+
+.btn-voltar:hover {
+ color: #fff;
+}
+
+.btn-voltar:before {
+ top: 100%;
+ left: 100%;
+ transition: all .7s;
+}
+
+.btn-voltar:hover:before {
+ top: -30px;
+ left: -30px;
+}
+
+.btn-voltar:active:before {
+ background: #3a0ca3;
+ transition: background 0s;
+}
+
+    
+  </style>
+</head>
+<body>
+
+  <h1>Escalonamento de Prioridade</h1>
+
+  <label for="prioridade">Selecione a prioridade:</label>
+  <select id="prioridade">
+    <option value="alta">Alta</option>
+    <option value="media">Média</option>
+    <option value="baixa">Baixa</option>
+  </select>
+
+  <button onclick="agendarTarefa()">Agendar Tarefa</button>
+
+  <div id="resultado"></div>
+
+  <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <button id="btnVoltar" onclick="recarregarPagina()">Reiniciar</button>
+
+  <script>
+    var filaTarefas = [];
+
+    function agendarTarefa() {
+      var selectPrioridade = document.getElementById("prioridade");
+      var prioridadeSelecionada = selectPrioridade.value;
+      var tempoExecucao = obterTempoExecucao(prioridadeSelecionada);
+
+      filaTarefas.push({ prioridade: prioridadeSelecionada, tempoExecucao: tempoExecucao });
+
+      exibirTarefas();
+      executarTarefas(); // Inicia a execução se não estiver em andamento
+    }
+
+    function exibirTarefas() {
+      var resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "<h2>Fila de Tarefas</h2>";
+
+      if (filaTarefas.length === 0) {
+        resultadoDiv.innerHTML += "<p>Nenhuma tarefa agendada.</p>";
+      } else {
+        resultadoDiv.innerHTML += "<ul>";
+        filaTarefas.forEach(function(tarefa, index) {
+          resultadoDiv.innerHTML += "<li><strong>Prioridade:</strong> " + tarefa.prioridade + ", <strong>Tempo de Execução:</strong> " + tarefa.tempoExecucao + " segundos";
+          resultadoDiv.innerHTML += " <button onclick=\"removerTarefa(" + index + ")\">Remover</button></li>";
+        });
+        resultadoDiv.innerHTML += "</ul>";
+      }
+    }
+
+    function obterTempoExecucao(prioridade) {
+      switch (prioridade) {
+        case "alta":
+          return 10;
+        case "media":
+          return 5;
+        case "baixa":
+          return 3;
+        default:
+          return 0;
+      }
+    }
+
+    function removerTarefa(index) {
+      filaTarefas.splice(index, 1);
+      exibirTarefas();
+    }
+
+    // Simulação de execução das tarefas (chamado a cada segundo)
+    function executarTarefas() {
+      if (filaTarefas.length > 0) {
+        var tarefaAtual = filaTarefas[0]; // Pega a primeira tarefa da fila
+        console.log("Executando tarefa com prioridade: " + tarefaAtual.prioridade);
+
+        var progress = document.getElementById("progress");
+        progress.style.width = "0%";
+
+        function atualizarProgresso(width) {
+          progress.style.width = width + "%";
+          if (width >= 100) {
+            console.log("Tarefa concluída. Removendo da fila.");
+            filaTarefas.shift(); // Remove a primeira tarefa da fila
+            exibirTarefas();
+            progress.style.width = "0%"; // Reseta a barra de progresso
+            executarTarefas(); // Chama a próxima tarefa
+          } else {
+            setTimeout(function() {
+              atualizarProgresso(width + (100 / tarefaAtual.tempoExecucao));
+            }, 1000);
+          }
+        }
+
+        atualizarProgresso(0);
+      }
+    }
+
+    function recarregarPagina() {
+      location.reload();
+    }
+
+    // Inicia a simulação de execução das tarefas
+    function iniciarSimulacao() {
+      setInterval(executarTarefas, 1000);
+    }
+
+    // Inicia a simulação quando a página carrega
+    window.onload = iniciarSimulacao;
+  </script>
+<br><br><a href="index.html"><button class="btn-voltar">Voltar</button></a>
+</body>
+</html>

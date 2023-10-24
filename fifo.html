@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/src/img/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escalonamento FIFO</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .queue,
+      .execution {
+        display: inline-block;
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 5px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 5px 0;
+      }
+
+      button {
+ --color: #560bad;
+ font-family: inherit;
+ display: inline-block;
+ cursor: pointer;
+ width: 8em;
+ height: 2.6em;
+ line-height: 2.5em;
+ margin: 20px;
+ position: relative;
+ overflow: hidden;
+ border: 2px solid var(--color);
+ transition: color .5s;
+ z-index: 1;
+ font-size: 17px;
+ border-radius: 6px;
+ font-weight: 500;
+ color: var(--color);
+}
+
+button:before {
+ content: "";
+ position: absolute;
+ z-index: -1;
+ background: var(--color);
+ height: 150px;
+ width: 200px;
+ border-radius: 50%;
+}
+
+button:hover {
+ color: #fff;
+}
+
+button:before {
+ top: 100%;
+ left: 100%;
+ transition: all .7s;
+}
+
+button:hover:before {
+ top: -30px;
+ left: -30px;
+}
+
+button:active:before {
+ background: #3a0ca3;
+ transition: background 0s;
+}
+    </style>
+  </head>
+  <body>
+    <h1>Simulação de Escalonamento de Processos (FIFO)</h1>
+    
+    <!-- Botões para adicionar e executar processos -->
+    <button id="add-process">Adicionar Processo</button>
+    <button id="execute-process">Executar Processos</button>
+    
+    <!-- Lista de processos na fila -->
+    <h2>Processos na Fila:</h2>
+    <ul id="process-queue"></ul>
+    
+    <!-- Processo em execução no momento -->
+    <h2>Status Atual:</h2>
+    <p id="current-process"></p>
+    
+    <!-- Lista de tempos de execução dos processos -->
+    <h2>Tempos de Execução:</h2>
+    <ul id="execution-time-list"></ul>
+
+    <!-- Campos de entrada para tempo de execução de cada processo -->
+    <div>
+        <label for="process-execution-time">Tempo de Execução do Processo:</label>
+        <input type="number" id="process-execution-time" min="1" step="1" placeholder="Tempo em segundos">
+    </div>
+
+    <script>
+// Variáveis globais
+let processQueue = [];
+let isExecuting = false;
+
+// Elementos da interface
+const processQueueList = document.getElementById('process-queue');
+const currentProcess = document.getElementById('current-process');
+const addProcessButton = document.getElementById('add-process');
+const executeProcessButton = document.getElementById('execute-process');
+const executionTimeList = document.getElementById('execution-time-list');
+
+// Função para atualizar a lista de processos na fila
+function updateQueueUI() {
+    processQueueList.innerHTML = '';
+    processQueue.forEach((process, index) => {
+        const li = document.createElement('li');
+        li.textContent = `Processo ${process.id} (Tempo de Execução: ${process.executionTime} segundos)`;
+        processQueueList.appendChild(li);
+    });
+}
+
+// Função para adicionar um novo processo à fila
+function addProcess() {
+    const executionTimeInput = document.getElementById('process-execution-time');
+    const executionTime = parseInt(executionTimeInput.value, 10);
+
+    if (!isNaN(executionTime) && executionTime > 0) {
+        const process = {
+            id: processQueue.length + 1,
+            startTime: 0,
+            endTime: 0,
+            executionTime: executionTime,
+        };
+        processQueue.push(process);
+        updateQueueUI();
+        executionTimeInput.value = ''; // Limpa o campo de entrada
+    } else {
+        alert('Por favor, insira um tempo de execução válido (maior que 0).');
+    }
+}
+
+// Função para executar os processos (FIFO)
+async function executeProcesses() {
+    if (!isExecuting && processQueue.length > 0) {
+        isExecuting = true;
+        const startTime = new Date().getTime();
+        currentProcess.textContent = `Executando Processos`;
+        executionTimeList.innerHTML = ''; // Limpa a lista de tempos de execução
+
+        for (let i = 0; i < processQueue.length; i++) {
+            const process = processQueue[i];
+            process.startTime = new Date().getTime();
+            currentProcess.textContent = `Executando Processo ${process.id} (Tempo de Execução: ${process.executionTime} segundos)`;
+
+            // Simule o tempo de execução de cada processo
+            await new Promise((resolve) => {
+                setTimeout(() => {
+                    process.endTime = new Date().getTime();
+                    resolve();
+                }, process.executionTime * 1000); // Use o tempo de execução especificado
+            });
+
+            // Mostrar o tempo de execução de cada processo na lista
+            const processTime = (process.endTime - process.startTime) / 1000;
+            const li = document.createElement('li');
+            li.textContent = `Processo ${process.id} levou ${processTime.toFixed(2)} segundos para ser executado.`;
+            executionTimeList.appendChild(li);
+        }
+
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000; // Tempo total de execução em segundos
+        currentProcess.textContent = `Processos executados em ${executionTime.toFixed(2)} segundos`;
+
+        processQueue = []; // Limpa a fila
+        updateQueueUI();
+        isExecuting = false;
+    }
+}
+
+// Event listeners para os botões
+addProcessButton.addEventListener('click', addProcess);
+executeProcessButton.addEventListener('click', executeProcesses);
+
+
+    </script>
+    <a href="index.html"><button>Voltar</button></a>
+  </body>
+</html>
