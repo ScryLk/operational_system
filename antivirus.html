@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Antivírus Simulado</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.antivirus-container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#virus-list {
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="antivirus-container">
+        <h1>Antivírus Simulado</h1>
+        <button onclick="verificarVirus()">Verificar e Limpar Próximo Vírus</button>
+        <button onclick="limparTodosViruses()">Limpar Todos</button>
+        <button onclick="verificarTodosVirus()">Verificar Todos</button>
+        <div id="virus-list">
+            <p>Vírus conhecidos: VirusA, VirusB, VirusC</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+<script>
+   const virusList = ["VirusA", "VirusB", "VirusC"];
+const removedViruses = [];
+
+function verificarVirus() {
+    const arquivo = prompt("Digite o nome do arquivo a ser verificado:");
+
+    if (!arquivo) {
+        alert("Digite o nome do arquivo!");
+        return;
+    }
+
+    for (let i = 0; i < virusList.length; i++) {
+        const virus = virusList[i];
+
+        if (arquivo.includes(virus)) {
+            removerVirus(arquivo, virus);
+            return;
+        }
+    }
+
+    alert("Nenhum vírus encontrado no arquivo.");
+}
+
+function verificarTodosVirus() {
+    const todosOsVirus = virusList.join(', ');
+    alert(`Vírus conhecidos: ${todosOsVirus}`);
+}
+
+function removerVirus(arquivo, virus) {
+    const index = virusList.indexOf(virus);
+    virusList.splice(index, 1);
+    removedViruses.push(virus);
+
+    const virusListDiv = document.getElementById("virus-list");
+    virusListDiv.innerHTML = `<p>Vírus conhecidos: ${virusList.join(', ')}</p>`;
+    alert(`Vírus ${virus} removido com sucesso do arquivo ${arquivo}!`);
+
+    if (virusList.length === 0) {
+        alert("Todos os vírus foram removidos!");
+    }
+}
+
+function limparTodosViruses() {
+    if (virusList.length === 0) {
+        alert("Nenhum vírus para limpar.");
+        return;
+    }
+
+    const virusRemovido = virusList.shift();
+    removedViruses.push(virusRemovido);
+
+    const virusListDiv = document.getElementById("virus-list");
+    virusListDiv.innerHTML = `<p>Vírus conhecidos: ${virusList.join(', ')}</p>`;
+    alert(`Vírus ${virusRemovido} removido com sucesso!`);
+}
+
+
+</script>
+</html>
