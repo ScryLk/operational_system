@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal com Tabs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Estilo do Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+
+
+    /* Estilo das Abas */
+    .tab {
+      display: none;
+    }
+
+    /* Estilo dos Botões das Abas */
+    .tab-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #myModal {
+        height: 100%;
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Botão para abrir o modal -->
+<button onclick="openModal()">Abrir Modal</button>
+
+<!-- O Modal -->
+<div id="myModal" class="modal">
+  <!-- Conteúdo do Modal -->
+  <div class="modal-content">
+    <!-- Botões das Abas -->
+    <button class="tab-button" onclick="openTab('Tab1')">Fragmentação</button>
+    <button class="tab-button" onclick="openTab('Tab2')">Segurança</button>
+    <button class="tab-button" onclick="openTab('Tab3')">Desempenho</button>
+
+    <!-- Conteúdo das Abas -->
+    <div id="Tab1" class="tab">
+      <h2>Aba 1 Conteúdo</h2>
+      <p>Conteúdo da primeira aba.</p>
+    </div>
+
+    <div id="Tab2" class="tab">
+      <h2>Aba 2 Conteúdo</h2>
+      <p>Conteúdo da segunda aba.</p>
+    </div>
+
+    <div id="Tab3" class="tab">
+      <h2>Aba 3 Conteúdo</h2>
+      <p>Conteúdo da terceira aba.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Função para abrir o modal
+  function openModal() {
+    document.getElementById('myModal').style.display = 'flex';
+    openTab('Tab1'); // Abre a primeira aba por padrão
+  }
+
+  // Função para fechar o modal
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Função para abrir uma aba específica
+  function openTab(tabName) {
+    var i, tabContent, tabButtons;
+    
+    // Oculta todos os conteúdos das abas
+    tabContent = document.getElementsByClassName('tab');
+    for (i = 0; i < tabContent.length; i++) {
+      tabContent[i].style.display = 'none';
+    }
+
+    // Desativa todos os botões das abas
+    tabButtons = document.getElementsByClassName('tab-button');
+    for (i = 0; i < tabButtons.length; i++) {
+      tabButtons[i].style.backgroundColor = '';
+    }
+
+    // Exibe o conteúdo da aba selecionada
+    document.getElementById(tabName).style.display = 'block';
+
+    // Ativa o botão da aba selecionada
+    event.currentTarget.style.backgroundColor = '#4CAF50';
+  }
+</script>
+
+</body>
+</html>
+
