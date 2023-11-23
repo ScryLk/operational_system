@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css.css">
     <link rel="icon" type="image/x-icon" href="/src/img/icon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="jquery-3.7.0.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DogOs</title>
@@ -112,62 +113,71 @@
         </lord-icon>
     </div>
 
-    <div class="modal fade" id="frag" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ext4</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="ext4-container">
+    <div class="modal fade " id="frag" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true  " >
+        <div class="modal-dialog ">
+            <div class="modal-content ">
+                <div class="modal-body modalrodape" id="ext4-container">
                     <!-- Botão para abrir o modal -->
                     <div class="radio-inputs">
                         <label class="radio">
                           <input type="radio" name="radio" checked="">
-                          <span class="name">Fragmentação</span>
+                          <div class="name"id="ativar1">Fragmentação</div>
                         </label>
                         <label class="radio">
                           <input type="radio" name="radio">
-                          <span class="name">Segurança</span>
+                          <div class="name"id="ativar2">Segurança</div>
                         </label>
                             
                         <label class="radio">
                           <input type="radio" name="radio">
-                          <span class="name">Desempenho</span>
+                          <div class="name"id="ativar3">Desempenho</div>
                         </label>
+
                       </div>
+
                     <!-- O Modal -->
                     <div id="myModal" class="modal">
                         <!-- Conteúdo do Modal -->
-                        <div class="modal-content" style="width: 700px;">
-                            <!-- Botões das Abas -->
-                            <button class="tab-button" onclick="openTab('Tab1')">Fragmentação</button>
-                            <button class="tab-button" onclick="openTab('Tab2')">Segurança</button>
-                            <button class="tab-button" onclick="openTab('Tab3')">Desempenho</button>
 
-                            <!-- Conteúdo das Abas -->
-                            <div class="radio-inputs">
-                                <label class="radio">
-                                  <input type="radio" name="radio" checked="">
-                                  <span class="name">Fragmentação</span>
-                                </label>
-                                <label class="radio">
-                                  <input type="radio" name="radio">
-                                  <span class="name">Segurança</span>
-                                </label>
-                            <div id="Tab2" class="tab">
-                                <h2>Aba 2 Conteúdo</h2>
-                                <p>Conteúdo da segunda aba.</p>
-                            </div>
 
-                            <div id="Tab3" class="tab">
-                                <h2>Aba 3 Conteúdo</h2>
-                                <p>Conteúdo da terceira aba.</p>
-                            </div>
-                        </div>
                     </div>
 
 
+                </div>
+                <div class="modal-header modalext4">
+                    <div class="modal-title fs-5 desativado1 ">
+                        Fragmentação é um fenômeno que ocorre em sistemas de armazenamento, tanto em memória RAM quanto em discos rígidos. Existem dois tipos principais:
+
+<br><br>Fragmentação Interna: Na alocação de memória, pode ocorrer quando um espaço de memória é alocado para um processo, mas o tamanho alocado é maior do que o necessário. Isso pode resultar em desperdício de espaço.
+
+<br><br>Fragmentação Externa: Nos discos, é causada pela distribuição não contígua de blocos de dados. Isso pode levar a espaços livres espalhados pelo disco, nos quais é difícil armazenar dados maiores, apesar de haver espaço disponível no total.
+                    </div>
+                    <div class="modal-title fs-5 desativado2">
+                        A segurança em sistemas operacionais é uma área crucial, envolvendo uma série de técnicas e mecanismos para proteger dados, recursos e garantir a integridade do sistema. Isso inclui:
+
+<br><br>Controle de Acesso: Gerenciar quem pode acessar quais recursos e em que nível.
+
+<br><br>Criptografia: Proteger dados sensíveis por meio de algoritmos que os tornam ilegíveis sem a chave correta.
+
+<br><br>Firewalls e Antivírus: Implementar barreiras contra ataques externos e detectar e eliminar software malicioso.
+
+<br><br>Atualizações de Segurança: Manter o sistema atualizado com patches e correções para fechar brechas de segurança conhecidas.
+                    </div>
+                    <div class="modal-title fs-5 desativado3">
+                        O desempenho de um sistema operacional é vital para garantir uma boa experiência de usuário e a eficiência na execução de tarefas. Fatores que afetam o desempenho incluem:
+
+<br><br>Gestão de Recursos: O sistema operacional deve gerenciar eficientemente os recursos do sistema, como CPU, memória, armazenamento e dispositivos de entrada e saída.
+
+<br><br>lgoritmos de Escalonamento: Para processos, o sistema operacional usa algoritmos para decidir quais processos executar e quando, otimizando o tempo de resposta e a utilização da CPU.
+
+<br><br>Otimização de Memória: Gerenciar a memória RAM de forma eficiente, minimizando a fragmentação e maximizando o uso da memória disponível.
+
+<br><br>Sistemas de Arquivos Eficientes: Uma organização eficiente dos dados no disco pode melhorar significativamente a velocidade de acesso aos arquivos.
+
+                    </div>
+                </div>
+                <div class=" btnfechar">
+                    <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -180,37 +190,35 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
     <script src="https://cdn.jsdelivr"></script>
     <script>
-        // Função para abrir o modal
-        function openModal() {
-            document.getElementById('myModal').style.display = 'flex';
-            openTab('Tab1'); // Abre a primeira aba por padrão
-        }
 
-        // Função para fechar o modal
-        function closeModal() {
-            document.getElementById('myModal').style.display = 'none';
-        }
 
-        // Função para abrir uma aba específica
-        function openTab(tabName) {
-            var i, tabContent, tabButtons;
+$("#ativar1").on( "click", function(){
+    $(".desativado1").show();
+    $(".desativado2").hide();
+    $(".desativado3").hide();
 
-            // Oculta todos os conteúdos das abas
-            tabContent = document.getElementsByClassName('tab');
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = 'none';
-            }
 
-            // Desativa todos os botões das abas
-            tabButtons = document.getElementsByClassName('tab-button');
-            for (i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].style.backgroundColor = '';
-            }
+  });  
 
-            // Exibe o conteúdo da aba selecionada
-            document.getElementById(tabName).style.display = 'block';
+  $("#ativar2").on( "click", function(){
+    $(".desativado2").show();
+    $(".desativado1").hide();
+    $(".desativado3").hide();
 
-            // Ativa o botão da aba selecionada
-            event.currentTarget.style.backgroundColor = '#4CAF50';
-        }
+
+  }); 
+
+  $("#ativar3").on( "click", function(){
+    $(".desativado3").show();
+    $(".desativado1").hide();
+    $(".desativado2").hide();
+
+
+  }); 
+  
+  
+ 
+  
+     
+
     </script>
