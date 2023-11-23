@@ -1,0 +1,23 @@
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+.livre{
+  background-color: #FE2E2E;
+}
+.processo{
+  background-color: #ccffcc;
+}
+
+.scroolspySite{
+  position: relative;
+  overflow: auto;
+  height: 400px;
+}
+
+.texto-corpo{
+  padding: 10px;
+  text-align: justify;
+  text-indent: 30px;
+  
+}

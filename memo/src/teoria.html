@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Pré-Configurações -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Todos os CSS -->
+    <link rel="stylesheet" href="_config/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="_config/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"/>-->
+    <link rel="stylesheet" href="_estilo/_css/estilo.css"/>
+
+    <title>Simulador de Gerenciamento de Memória (SGM)</title>
+  </head>
+  
+  <body>
+    <!--Menu do topo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand h1 mb-0 text-dark" href="index.html"><i class="fas fa-desktop"></i>SGM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="teoria.html"><i class="fas fa-book"></i>Teoria</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="simulador.html"><i class="far fa-play-circle"></i>Simulação</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal"><i class="fas fa-users"></i>Contato</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/Menu do topo-->
+    
+    <!--Conteudo-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mt-5 mb-2">
+          <h1 class="display-3">Teoria</h1>
+          <p>Sobre sistemas operacionais</p>
+        </div>
+      </div>
+      <div class="row mb-5">
+              <div class="col-3">
+                  <nav id="navbarVertical" class="navbar navbar-light bg-light">
+                      <nav class="nav nav-pills flex-column">
+                          <a class="nav-link mb-2" href="#item1">Introdução</a>
+                          <a class="nav-link mb-1" href="#item2">Escolha da partição</a>
+                          
+                          <nav class="nav nav-pills flex-column">
+                              <a class="nav-link ml-3" href="#item2-1">Best-fit</a>
+                          </nav>
+                      </nav>
+                  </nav>
+              </div>
+              
+              <div class="col-9">
+                <div data-spy="scroll" id="corpo" data-target="#navbarVertical" data-offset="0" class="scroolspySite">
+                      
+                      <h4 id="item1">Introdução</h4>
+                      <p class="texto-corpo">
+                        Na memória principal residem os programas em execução.
+                        Memória secundária são mecanismos de armazenamento permanente, são mais abundantes e baratas.
+                        Para um programa ser executado deve ser carregado na memória principal.
+                        Gerenciamento complexo em sistemas multiprogramáveis com múltiplos usuários utilizando-a eficientemente.
+                      </p>
+                      
+                      <h4 id="item2">Estratégias para Escolha da Partição</h4>
+                      <p class="texto-corpo">
+                        Função para determinar em qual partição livre um programa será carregado para execução.
+                        Função de evitar, ou diminuir, o problema da fragmentação antes que ele ocorra.
+                        O tamanho do programa é o fator mais importante para a adoção da melhor estratégia.<br/>
+                        <b id="item2-1">Best-fit:</b><br/>
+                        Escolhe a melhor partição, ou seja, aquela que o programa deixa o menor espaço sem utilização.
+                        Lista de áreas livres alocada por tamanho, diminuindo o tempo de busca
+                        Desvantagem de deixar pequenas áreas não contíguas, aumentando o problema da fragmentação.<br/>
+                        <b>Worst-fit:</b><br/>
+                        Escolhe a pior partição, ou seja, aquela que o programa deixa o maior espaço sem utilização.
+                        Diminui o problema de fragmentação, deixando espaços livres maiores que permitem a um maior número de programas utilizar a memória.<br/>
+                        <b>First-fit:</b><br/>
+                        Escolhe a primeira partição livre de tamanho suficiente para carregar o programa
+                        Lista de áreas livres ordenada por endereços crescentemente.
+                        Grande chance de se obter uma grande partição livre nos endereços de memórias mais altos.
+                        Mais rápida e consome menos recursos do sistema.
+                      </p>
+                  </div>
+              </div>
+              
+          </div>
+    </div>
+    <!--/Conteudo-->
+    
+    <!--Modal-->
+    <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-users"></i>Contato</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Encontrou algum erro? por favor nos informe através de um dos e-mails abaixo.</p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Vittor Feitosa</h5>
+                  <p>vittor_segatti@unifesspa.edu.br</p>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Victor Hugo</h5>
+                  <p>torugok@unifesspa.edu.br</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Modal-->
+    
+    <!-- Todos os JavaScript -->
+    <!-- jQuery, Popper.js e Bootstrap JS -->
+    <script src="_config/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="_config/node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="_config/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

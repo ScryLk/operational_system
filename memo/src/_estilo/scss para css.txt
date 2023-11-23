@@ -1,0 +1,1 @@
+sass --watch _estilo\_scss:_estilo\_css

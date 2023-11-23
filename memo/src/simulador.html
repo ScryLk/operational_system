@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Pré-Configurações -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Todos os CSS -->
+    <link rel="stylesheet" href="_config/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="_config/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"/>-->
+    <link rel="stylesheet" href="_estilo/_css/estilo.css"/>
+
+    <title>Simulador de Gerenciamento de Memória (SGM)</title>
+  </head>
+
+  <body>
+    <!--Menu do topo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand h1 mb-0 text-dark" href="index.html"><i class="fas fa-desktop"></i>SGM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="teoria.html"><i class="fas fa-book"></i>Teoria</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="simulador.html"><i class="far fa-play-circle"></i>Simulação</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal"><i class="fas fa-users"></i>Contato</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/Menu do topo-->
+
+    <!--Conteudo-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mt-5 mb-2">
+          <h1 class="display-3">Simulador</h1>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <form autocomplete="off">
+        <h4>Criação de Processos</h4>
+        <div class="form-group row col-12">
+          <label for="nome_processo" class="col-form-label col-3">Nome:</label>
+          <div class="col-7">
+            <input id="nome_processo" type="text" class="form-control" name="firstname" value="">
+          </div>
+        </div>
+        <div class="form-group row col-12">
+          <label for="tamanho_processo" class="col-form-label col-3">Tamanho(KB):</label>
+          <div class="col-9">
+            <input id="tamanho_processo" class="form-control col-9" min="1" type="number" name="lastname" value="">
+          </div>
+        </div>
+        <input type="button" onclick="addProcess()" class="btn btn-primary" style="margin-left: 150px;" value="Criar Processo">
+      </form>
+    </br>
+                <fieldset>
+                  <legend>Tabela de processos</legend>
+                  <table id="processos" style="width:100%">
+  <tr>
+    <th>PID</th>
+    <th>Nome</th>
+    <th>Tamanho</th>
+  </tr>
+
+</table>
+<input type="button" onclick="allocAllProcess()" class="btn btn-primary mt-3"  value="Alocar Processos">
+<button onclick=""  class="btn btn-warning mt-3 ml-3" >Resetar</button>
+                </fieldset>
+
+
+
+              </div>
+            </div>
+        </div>
+        <div class="col-6">
+
+<h4>Criar Partição</h4>
+<h6 id="tamanho_disponivel">Disponível: 200kb</h6>
+<div>
+<form>
+  <div class="form-group row col-12">
+    <label for="tamanho_processo" class="col-form-label col-2">Tamanho:</label>
+    <div class="col-3">
+      <input id="tamanho_particao" class="form-control" min="1" type="number" name="lastname" value="">
+    </div>
+    <input type="button" onclick="addPartition()" class="btn btn-primary" value="Criar Partição">
+  </div>
+
+
+</form>
+</div>
+
+<fieldset>
+                  <legend>Tabela de Partições</legend>
+                  <table id="particoes" style="width:100%">
+  <tr>
+    <th>Tamanho</th>
+  </tr>
+
+</table>
+                  <button onclick="" class="btn btn-warning my-3 ml-3">Resetar</button>
+                </fieldset>
+
+        </div>
+
+        <div class="row justify-content-center col-6">
+          <h3>Best Fit</h3>
+<table id="bestfit" style="width:100%">
+  <tr>
+    <th>PID</th>
+    <th>Nome</th>
+    <th>Tamanho</th>
+  </tr>
+
+</table>
+          <button onclick="" class="btn btn-warning my-3">Resetar</button>
+        </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="row justify-content-center col-6">
+          <h3>Worst Fit</h3>
+<table id="worstfit" style="width:100%">
+  <tr>
+    <th>PID</th>
+    <th>Nome</th>
+    <th>Tamanho</th>
+  </tr>
+
+</table>
+          <button onclick="" class="btn btn-warning my-3">Resetar</button>
+        </div>
+
+        <div class="row justify-content-center col-6">
+          <h3>First Fit</h3>
+<table id="firstfit" style="width:100%">
+  <tr>
+    <th>PID</th>
+    <th>Nome</th>
+    <th>Tamanho</th>
+  </tr>
+
+</table>
+          <button onclick="" class="btn btn-warning my-3">Resetar</button>
+        </div>
+
+
+
+      </div>
+
+
+
+      </div>
+    <!--/Conteudo-->
+
+    <!--Modal-->
+    <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-users"></i>Contato</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Encontrou algum erro? por favor nos informe através de um dos e-mails abaixo.</p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Vittor Feitosa</h5>
+                  <p>vittor_segatti@unifesspa.edu.br</p>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Victor Hugo</h5>
+                  <p>torugok@unifesspa.edu.br</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Modal-->
+
+    <!-- Todos os JavaScript -->
+    <!-- jQuery, Popper.js e Bootstrap JS -->
+    <script src="_config/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="_config/node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="_config/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="_javascript/funcoes.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+    <script>
+
+var pid_count = 0;
+var memoria_disponivel = 200;
+
+
+class Processo
+{
+  constructor(pid,nome, tamanho)
+  {
+    this.pid = pid;
+    this.nome = nome;
+    this.tamanho = tamanho;
+
+  }
+}
+
+class Particao
+{
+  constructor(tamanho)
+  {
+    this.process = null;
+    this.tamanho = tamanho;
+  }
+
+}
+
+var lista_processos = new Array();
+var lista_particoes = new Array();
+
+function allocAllProcess()
+{
+  var lista_best_fit = JSON.parse(JSON.stringify(lista_particoes));
+  for(var i = 0; i < lista_processos.length; i++)
+  {
+    var particao_index = null;
+    var processo_i = lista_processos[i];
+    for(var j = 0; j < lista_best_fit.length; j++)
+    {
+      var particao_j = lista_best_fit[j];
+      if(particao_j.process == null)
+      {
+        if(particao_index != null)
+        {
+
+          if(parseInt(processo_i.tamanho,10) <= parseInt(particao_j.tamanho,10) && parseInt(lista_best_fit[particao_index].tamanho,10) > parseInt(particao_j.tamanho,10) )
+          {
+            particao_index = j;
+          }
+        }
+        else {
+          if(parseInt(processo_i.tamanho,10) <= parseInt(particao_j.tamanho,10))
+          {
+            particao_index = j;
+          }
+        }
+      }
+
+    }
+    //inserir na lista best fit
+    if(particao_index != null)
+    {
+      lista_best_fit[particao_index].process=processo_i;
+      if(parseInt(processo_i.tamanho, 10) < parseInt(lista_best_fit[particao_index].tamanho, 10) )
+      {
+        var tamanho_restante = lista_best_fit[particao_index].tamanho - processo_i.tamanho;
+        lista_best_fit[particao_index].tamanho = processo_i.tamanho;
+        lista_best_fit.splice(particao_index+1,0,new Particao(tamanho_restante));
+      }
+    }
+    else {
+      alert("Nenhuma partição disponível para o processo \""+processo_i.nome+"\"");
+    }
+  }
+
+   $("#bestfit td").remove();
+  // Popula a Tabela Best Fit
+  for(var j = 0 ; j < lista_best_fit.length ; j++)
+  {
+    var newRow=document.getElementById('bestfit').insertRow();
+    if(lista_best_fit[j].process != null)
+    {
+      newRow.innerHTML = "<td height=\""+lista_best_fit[j].tamanho+"\" >"+lista_best_fit[j].process.pid+"</td>"+"<td>"+lista_best_fit[j].process.nome+"</td>"+"<td>"+lista_best_fit[j].tamanho+" KB</td>";
+      newRow.className = 'processo';
+    }
+    else {
+      newRow.innerHTML = "<td height=\""+lista_best_fit[j].tamanho+"\" >"+"N/D"+"</td>"+"<td>"+"Área Livre"+"</td>"+"<td>"+lista_best_fit[j].tamanho+" KB</td>";
+      newRow.className = 'livre';
+    }
+  }
+
+
+
+  // worst fit
+
+    var lista_worst_fit = JSON.parse(JSON.stringify(lista_particoes));
+    for(var i = 0; i < lista_processos.length; i++)
+    {
+      var particao_index = null;
+      var processo_i = lista_processos[i];
+      for(var j = 0; j < lista_worst_fit.length; j++)
+      {
+        var particao_j = lista_worst_fit[j];
+        if(particao_j.process == null)
+        {
+          if(particao_index != null)
+          {
+
+            if(parseInt(processo_i.tamanho,10) <= parseInt(particao_j.tamanho,10) && parseInt(lista_worst_fit[particao_index].tamanho,10) < parseInt(particao_j.tamanho,10) )
+            {
+              particao_index = j;
+            }
+          }
+          else {
+            if(parseInt(processo_i.tamanho,10) <= parseInt(particao_j.tamanho,10))
+            {
+              particao_index = j;
+            }
+          }
+        }
+
+      }
+      //inserir na lista worst fit
+      if(particao_index != null)
+      {
+        lista_worst_fit[particao_index].process=processo_i;
+        if(parseInt(processo_i.tamanho, 10) < parseInt(lista_worst_fit[particao_index].tamanho, 10) )
+        {
+          var tamanho_restante = lista_worst_fit[particao_index].tamanho - processo_i.tamanho;
+          lista_worst_fit[particao_index].tamanho = processo_i.tamanho;
+          lista_worst_fit.splice(particao_index+1,0,new Particao(tamanho_restante));
+        }
+      }
+      else {
+        alert("Nenhuma partição disponível para o processo \""+processo_i.nome+"\"");
+      }
+    }
+
+     $("#worstfit td").remove();
+    // Popula a Tabela worst Fit
+    for(var j = 0 ; j < lista_worst_fit.length ; j++)
+    {
+      var newRow=document.getElementById('worstfit').insertRow();
+      if(lista_worst_fit[j].process != null)
+      {
+        newRow.innerHTML = "<td height=\""+lista_worst_fit[j].tamanho+"\" >"+lista_worst_fit[j].process.pid+"</td>"+"<td>"+lista_worst_fit[j].process.nome+"</td>"+"<td>"+lista_worst_fit[j].tamanho+" KB</td>";
+        newRow.className = 'processo';
+      }
+      else {
+        newRow.innerHTML = "<td height=\""+lista_worst_fit[j].tamanho+"\" >"+"N/D"+"</td>"+"<td>"+"Área Livre"+"</td>"+"<td>"+lista_worst_fit[j].tamanho+" KB</td>";
+        newRow.className = 'livre';
+      }
+    }
+
+
+
+    // first Fit
+
+        var lista_first_fit = JSON.parse(JSON.stringify(lista_particoes));
+        for(var i = 0; i < lista_processos.length; i++)
+        {
+          var particao_index = null;
+          var processo_i = lista_processos[i];
+          for(var j = 0; j < lista_first_fit.length; j++)
+          {
+            var particao_j = lista_first_fit[j];
+            if(particao_j.process == null)
+            {
+              if(parseInt(processo_i.tamanho,10) <= parseInt(particao_j.tamanho,10) )
+              {
+                particao_index = j;
+                break
+              
+              }
+
+            }
+
+          }
+          //inserir na lista worst fit
+          if(particao_index != null)
+          {
+            lista_first_fit[particao_index].process=processo_i;
+            if(parseInt(processo_i.tamanho, 10) < parseInt(lista_first_fit[particao_index].tamanho, 10) )
+            {
+              var tamanho_restante = lista_first_fit[particao_index].tamanho - processo_i.tamanho;
+              lista_first_fit[particao_index].tamanho = processo_i.tamanho;
+              lista_first_fit.splice(particao_index+1,0,new Particao(tamanho_restante));
+            }
+          }
+          else {
+            alert("Nenhuma partição disponível para o processo \""+processo_i.nome+"\"");
+          }
+        }
+
+         $("#firstfit td").remove();
+        // Popula a Tabela worst Fit
+        for(var j = 0 ; j < lista_first_fit.length ; j++)
+        {
+          var newRow=document.getElementById('firstfit').insertRow();
+          if(lista_first_fit[j].process != null)
+          {
+            newRow.innerHTML = "<td height=\""+lista_first_fit[j].tamanho+"\" >"+lista_first_fit[j].process.pid+"</td>"+"<td>"+lista_first_fit[j].process.nome+"</td>"+"<td>"+lista_first_fit[j].tamanho+" KB</td>";
+            newRow.className = 'processo';
+          }
+          else {
+            newRow.innerHTML = "<td height=\""+lista_first_fit[j].tamanho+"\" >"+"N/D"+"</td>"+"<td>"+"Área Livre"+"</td>"+"<td>"+lista_first_fit[j].tamanho+" KB</td>";
+            newRow.className = 'livre';
+          }
+        }
+
+
+}
+
+
+function addPartition()
+{
+  var tamanho_particao = document.getElementById('tamanho_particao').value;
+  if(tamanho_particao != "")
+  {
+    if(memoria_disponivel >= tamanho_particao )
+    {
+      var newRow=document.getElementById('particoes').insertRow();
+      newRow.innerHTML = "<td>"+tamanho_particao+" KB</td>";
+      memoria_disponivel-=tamanho_particao;
+      $("#tamanho_disponivel").text("Disponível: "+memoria_disponivel+" KB");
+
+      lista_particoes.push(new Particao(tamanho_particao));
+
+    }
+    else {
+      alert("Memoria insuficiente!");
+    }
+  }
+  else {
+    alert("Insira os campos necessários!");
+  }
+}
+
+function addProcess()
+{
+  var nome_processo = document.getElementById('nome_processo').value;
+  var tamanho_processo = document.getElementById('tamanho_processo').value;
+  if(nome_processo != "" && tamanho_processo!="")
+  {
+    var newRow=document.getElementById('processos').insertRow();
+    newRow.innerHTML = "<td>"+pid_count+"</td>"+"<td>"+nome_processo+"</td><td>"+tamanho_processo+" KB</td>";
+    pid_count++;
+    lista_processos.push(new Processo(pid_count,nome_processo,tamanho_processo) );
+  }
+  else {
+    alert("Insira os campos necessários!");
+  }
+}
+
+
+
+
+
+</script>
+
+  </body>
+</html>

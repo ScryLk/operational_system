@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Pré-Configurações -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Todos os CSS -->
+    <link rel="stylesheet" href="_config/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="_config/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"/>-->
+    <link rel="stylesheet" href="_estilo/_css/estilo.css"/>
+
+    <title>Simulador de Gerenciamento de Memória (SGM)</title>
+  </head>
+  
+  <body>
+    <!--Menu do topo-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand h1 mb-0 text-light" href="index.html"><i class="fas fa-desktop"></i>SGM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="teoria.html"><i class="fas fa-book"></i>Teoria</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="simulador.html"><i class="far fa-play-circle"></i>Simulação</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal"><i class="fas fa-users"></i>Contato</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/Menu do topo-->
+    
+    <!--Conteudo-->
+    <div class="container">
+      <div class="row mb-5 justify-content-sm-center">
+        <div class="col-lx-4 col-md-6 col-sm-6 col-lg-4 mb-4">
+          <div class="card">
+            <img class="card-img-top" src=""/>
+            <div class="card-body">
+              <h4 class="card-title"><i class="fas fa-cut text-primary"></i>Best-fit</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Resumo</h6>
+              <p class="card-text text-justify">Escolhe a melhor partição, ou seja, aquela que o programa deixa o menor espaço sem utilização.</p>
+            </div>
+            <div class="card-body">
+              <a href="teoria.html" class="card-link"><i class="fas fa-book-open"></i>Conteúdo</a>
+              <a href="simulador.html" class="card-link"><i class="fas fa-play"></i>Simular</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lx-4 col-md-6 col-sm-6 col-lg-4 mb-4">
+          <div class="card">
+            <img class="card-img-top" src=""/>
+            <div class="card-body">
+              <h4 class="card-title"><i class="fas fa-cut text-danger"></i>Worst-fit</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Resumo</h6>
+              <p class="card-text text-justify">Escolhe a pior partição, ou seja, aquela que o programa deixa o maior espaço sem utilização.</p>
+            </div>
+            <div class="card-body">
+              <a href="teoria.html" class="card-link"><i class="fas fa-book-open"></i>Conteúdo</a>
+              <a href="simulador.html" class="card-link"><i class="fas fa-play"></i>Simular</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lx-4 col-md-6 col-sm-6 col-lg-4 mb-4">
+          <div class="card">
+            <img class="card-img-top" src=""/>
+            <div class="card-body">
+              <h4 class="card-title"><i class="fas fa-cut"></i>First-fit</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Resumo</h6>
+              <p class="card-text text-justify">Escolhe a primeira partição livre de tamanho suficiente para carregar o programa.</p>
+            </div>
+            <div class="card-body">
+              <a href="teoria.html" class="card-link"><i class="fas fa-book-open"></i>Conteúdo</a>
+              <a href="simulador.html" class="card-link"><i class="fas fa-play"></i>Simular</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Conteudo-->
+    
+    <!--Modal-->
+    <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-users"></i>Contato</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Encontrou algum erro? por favor nos informe através de um dos e-mails abaixo.</p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Vittor Feitosa</h5>
+                  <p>vittor_segatti@unifesspa.edu.br</p>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                  <h5>Victor Hugo</h5>
+                  <p>torugok@unifesspa.edu.br</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Modal-->
+    
+    <!-- Todos os JavaScript -->
+    <!-- jQuery, Popper.js e Bootstrap JS -->
+    <script src="_config/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="_config/node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="_config/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
