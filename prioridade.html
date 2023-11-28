@@ -5,83 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escalonamento de Prioridade</title>
   <style>
-    #prioridade {
-      font-size: 18px;
-      margin-right: 10px;
+      body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
     }
 
     #resultado {
       margin-top: 20px;
-      font-size: 16px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
     }
 
     .progress-bar {
+      width: 100%;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin-top: 20px;
       height: 20px;
-      background-color: #ddd;
-      position: relative;
-      margin-top: 10px;
+      overflow: hidden;
     }
 
     .progress {
-      height: 100%;
       width: 0;
-      background-color: #4CAF50;
-      position: absolute;
+      height: 100%;
+      background-color: #3498db;
+      transition: width 0.5s ease-in-out;
     }
 
     #btnVoltar {
-      margin-top: 10px;
-      font-size: 16px;
+      margin-top: 20px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
     }
-    .btn-voltar {
- --color: #560bad;
- font-family: inherit;
- display: inline-block;
- width: 8em;
- height: 2.6em;
- line-height: 2.5em;
- margin: 20px;
- position: relative;
- overflow: hidden;
- border: 2px solid var(--color);
- transition: color .5s;
- z-index: 1;
- font-size: 17px;
- border-radius: 6px;
- font-weight: 500;
- color: var(--color);
- cursor: pointer;
-}
 
-.btn-voltar:before {
- content: "";
- position: absolute;
- z-index: -1;
- background: var(--color);
- height: 150px;
- width: 200px;
- border-radius: 50%;
-}
-
-.btn-voltar:hover {
- color: #fff;
-}
-
-.btn-voltar:before {
- top: 100%;
- left: 100%;
- transition: all .7s;
-}
-
-.btn-voltar:hover:before {
- top: -30px;
- left: -30px;
-}
-
-.btn-voltar:active:before {
- background: #3a0ca3;
- transition: background 0s;
-}
+    #btnVoltar:hover {
+      background-color: #c0392b;
+    }
 
     
   </style>
