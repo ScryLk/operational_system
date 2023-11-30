@@ -10,7 +10,100 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <!--<link rel="stylesheet" href="_config/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"/>-->
-  <link rel="stylesheet" href="css.css">
+<style>
+
+
+   /* Estilos para os inputs e botões */
+input[type="number"],
+input[type="button"],
+.btn {
+  padding: 8px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="number"] {
+  width: 70px;
+}
+
+/* Estilos para as tabelas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para os fieldsets e legends */
+fieldset {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+/* Estilos para as tooltips */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.radius{
+  border-radius: 5px;
+}
+.resetar{
+  color: rgb(255, 255, 255);
+  background-color: rgb(238, 66, 66);
+}
+.explicacao{
+  color: rgb(255, 255, 255);
+background-color: rgb(110, 115, 180);
+
+}
+
+
+.bordercolor{
+background-color: rgb(245, 245, 209);
+}
+
+
+</style>
 </head>
 
 <body>
@@ -25,35 +118,35 @@
         <div class="form-row">
           
           <form autocomplete="off">
-            <h4>Criação de Processos</h4><button class="btn btn-info" onclick="explication()" style="cursor: pointer;">Explicação</button><br><br>
+            <h4>Criação de Processos</h4><button class="btn btn-info explicacao" onclick="explication()" style="cursor: pointer;">Explicação</button><br><br>
             <div class="form-group row col-12">
               <label for="nome_processo" class="col-form-label col-3" style="">Nome:</label>
               <div class="col-7">
-                <input id="nome_processo" type="text" class="form-control" name="firstname" value="">
+                <input class="radius" id="nome_processo" type="text" class="form-control" name="firstname" value="">
               </div>
             </div>
             <div class="form-group row col-12">
               <label for="tamanho_processo" class="col-form-label col-3">Tamanho(KB):</label>
               <div class="col-9">
-                <input id="tamanho_processo" class="form-control col-9" min="1" type="number" name="lastname" value="">
+                <input id="tamanho_processo" class="form-control col-9 bordercolor" min="1" type="number" name="lastname" value="">
               </div>
             </div>
-            <input type="button" onclick="addProcess()" class="btn btn-primary" style="margin-left: 0px;"
+            <input type="button" onclick="addProcess()" class="btn btn-primary explicacao" style="margin-left: 0px;"
               value="Criar Processo">
           </form>
           </br>
           <fieldset>
             <legend>Tabela de processos</legend>
             <table id="processos" style="width:100%">
-              <tr>
-                <th>PID</th>
+              <tr class="titulos">
+                <th class="titulos">PID</th>
                 <th>Nome</th>
                 <th>Tamanho</th>
               </tr>
 
             </table>
-            <input type="button" onclick="allocAllProcess()" class="btn btn-primary mt-3" value="Alocar Processos">
-            <button onclick="" class="btn btn-warning mt-3 ml-3">Resetar</button>
+            <input type="button" onclick="allocAllProcess()" class="btn btn-primary mt-3 explicacao" value="Alocar Processos">
+            <button onclick="" class="btn btn-warning mt-3 ml-3 resetar">Resetar</button>
           </fieldset>
 
 
@@ -75,7 +168,7 @@
             <div class="col-3">
               <input id="tamanho_particao" class="form-control" min="1" type="number" name="lastname" value="">
             </div>
-            <input type="button" onclick="addPartition()" class="btn btn-primary" value="Criar Partição">
+            <input type="button" onclick="addPartition()" class="btn btn-primary explicacao" value="Criar Partição">
           </div>
 
 
@@ -90,7 +183,7 @@
           </tr>
 
         </table>
-        <button onclick="" class="btn btn-warning my-3 ml-3">Resetar</button>
+        <button onclick="" class="btn btn-warning my-3 ml-3 resetar">Resetar</button>
       </fieldset>
 
     </div>
@@ -110,7 +203,7 @@
         </tr>
 
       </table>
-      <button onclick="" class="btn btn-warning my-3">Resetar</button>
+      <button onclick="" class="btn btn-warning my-3 resetar">Resetar</button>
     </div>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

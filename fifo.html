@@ -6,6 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Escalonamento FIFO</title>
     <style>
+       h2 {
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Estilos para a lista de processos na fila */
+    #process-queue {
+      list-style: none;
+      padding-left: 0;
+    }
+    #process-queue li {
+      margin-bottom: 5px;
+    }
+
+    /* Estilos para o status atual */
+    #current-process {
+      font-weight: bold;
+    }
+
+    /* Estilos para a lista de tempos de execução */
+    #execution-time-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    #execution-time-list li {
+      margin-bottom: 5px;
+    }
+
+    /* Estilos para o campo de entrada */
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    #process-execution-time {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
       body {
         font-family: Arial, sans-serif;
         text-align: center;
