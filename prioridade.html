@@ -92,7 +92,7 @@
   <button class="btntarefa" onclick="agendarTarefa()">Agendar Tarefa</button>
 
   <div id="resultado"></div>
-
+<li></li>
   <div class="progress-bar">
     <div class="progress" id="progress"></div>
   </div>
@@ -101,6 +101,7 @@
 
   <script>
     var filaTarefas = [];
+    var simulacaoEmAndamento = false;
 
     function agendarTarefa() {
       var selectPrioridade = document.getElementById("prioridade");
@@ -110,7 +111,6 @@
       filaTarefas.push({ prioridade: prioridadeSelecionada, tempoExecucao: tempoExecucao });
 
       exibirTarefas();
-      executarTarefas(); // Inicia a execução se não estiver em andamento
     }
 
     function exibirTarefas() {
@@ -126,6 +126,10 @@
           resultadoDiv.innerHTML += " <button onclick=\"removerTarefa(" + index + ")\">Remover</button></li>";
         });
         resultadoDiv.innerHTML += "</ul>";
+      }
+
+      if (!simulacaoEmAndamento && filaTarefas.length > 0) {
+        iniciarSimulacao();
       }
     }
 
@@ -147,23 +151,38 @@
       exibirTarefas();
     }
 
-    // Simulação de execução das tarefas (chamado a cada segundo)
+    function zerarFila() {
+      filaTarefas = [0];
+      simulacaoEmAndamento = false;
+    }
+
     function executarTarefas() {
+
       if (filaTarefas.length > 0) {
-        var tarefaAtual = filaTarefas[0]; // Pega a primeira tarefa da fila
+        var tarefaAtual = filaTarefas[0];
+
+        simulacaoEmAndamento = true;
         console.log("Executando tarefa com prioridade: " + tarefaAtual.prioridade);
 
         var progress = document.getElementById("progress");
         progress.style.width = "0%";
 
+        
+
         function atualizarProgresso(width) {
           progress.style.width = width + "%";
-          if (width >= 100) {
+          if (width > 100) {
             console.log("Tarefa concluída. Removendo da fila.");
-            filaTarefas.shift(); // Remove a primeira tarefa da fila
+            zerarFila();
+            filaTarefas.shift();
             exibirTarefas();
-            progress.style.width = "0%"; // Reseta a barra de progresso
-            executarTarefas(); // Chama a próxima tarefa
+            if(filaTarefas === 0) {
+              
+              console.log("Fila zeradas");
+            }
+            progress.style.width = "0%";
+            simulacaoEmAndamento = false;
+              
           } else {
             setTimeout(function() {
               atualizarProgresso(width + (100 / tarefaAtual.tempoExecucao));
@@ -179,13 +198,12 @@
       location.reload();
     }
 
-    // Inicia a simulação de execução das tarefas
     function iniciarSimulacao() {
+
       setInterval(executarTarefas, 1000);
     }
 
-    // Inicia a simulação quando a página carrega
-    window.onload = iniciarSimulacao;
+    window.onload = exibirTarefas;
   </script>
 
 </body>
