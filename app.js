@@ -87,3 +87,13 @@ form.addEventListener('submit', (e) => {
     errorElement.innerText = messages.join(', ')
   }
 })
+
+let calendar = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+const diasDiv = document.querySelector('.dias');
+
+// Iterando sobre a array e adicionando os meses à div
+calendar.forEach(mes => {
+  const mesElement = document.createElement('p');
+  mesElement.textContent = mes;
+  diasDiv.appendChild(mesElement);
+});
