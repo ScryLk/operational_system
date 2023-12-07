@@ -90,6 +90,7 @@
   </select>
 
   <button class="btntarefa" onclick="agendarTarefa()">Agendar Tarefa</button>
+  <button onclick="zerarFila()">zerarF </button>
 
   <div id="resultado"></div>
 <li></li>
@@ -111,6 +112,10 @@
       filaTarefas.push({ prioridade: prioridadeSelecionada, tempoExecucao: tempoExecucao });
 
       exibirTarefas();
+      if (prioridadeSelecionada == 0) {
+        zerarFila();
+        alert("teste");
+      }
     }
 
     function exibirTarefas() {

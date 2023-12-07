@@ -14,6 +14,9 @@
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
     <style>
         #ext4-container {
             display: flex;
@@ -48,9 +51,30 @@
     </div>
     <div class="sidebar right">
         <div class="right icons">
-            <img src="src/img/calendar.svg" id="calendarButton">
+          <img src="src/img/calendar.svg" id="calendarButton" data-bs-target="#calendarModal" data-bs-toggle="modal">
         </div>
     </div>
+
+    <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Adicionando o calendário -->
+              <div id="calendar"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
 
     <!--Prioridade-->
 
@@ -242,6 +266,28 @@ $("#ativar1").on( "click", function(){
   }); 
   
   
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Inicializando o calendário
+    $('#calendar').fullCalendar({
+      // Suas opções de configuração do calendário aqui
+      // Por exemplo:
+      events: [
+        {
+          title: 'Evento 1',
+          start: '2023-12-07'
+        },
+        {
+          title: 'Evento 2',
+          start: '2023-12-15'
+        }
+        // Adicione mais eventos conforme necessário
+      ]
+    });
+  });
+</script>
  
   
      
